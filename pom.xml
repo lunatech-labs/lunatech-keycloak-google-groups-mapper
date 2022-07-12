@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lunatech.keycloak</groupId>
+    <artifactId>keycloak-google-groups-mapper</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <name>Keycloak Google Groups Mapper</name>
+    <description>An Identity Provider Mapper that fetches Google Groups membership information of a user that uses Google as Identity Provider and syncs it to Keycloak groups.</description>
+    <url>https://github.com/lunatech-labs/lunatech-keycloak-google-groups-mapper</url>
+    <inceptionYear>2022</inceptionYear>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <keycloak.version>18.0.2</keycloak.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <distribution.name>${project.artifactId}</distribution.name>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://spdx.org/licenses/Apache-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <developerConnection>scm:git:ssh://git@github.com/lunatech-labs/lunatech-keycloak-google-groups-mapper.git</developerConnection>
+        
+      <tag>HEAD</tag>
+  </scm>
+
+    <developers>
+        <developer>
+            <id>eamelink</id>
+            <name>Erik Bakker</name>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-server-spi</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-server-spi-private</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-services</artifactId>
+            <version>${keycloak.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-admin-directory</artifactId>
+            <version>directory_v1-rev20220621-1.32.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.42.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-oauth2-http</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.slugify</groupId>
+            <artifactId>slugify</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M6</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jreleaser</groupId>
+                <artifactId>jreleaser-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <configuration>
+                    <jreleaser>
+                        <release>
+                            <github>
+                                <owner>lunatech-labs</owner>
+                                <name>lunatech-keycloak-google-groups-mapper</name>
+                                <overwrite>true</overwrite>
+                            </github>
+                        </release>
+                        <distributions>
+                            <jar>
+                                <type>SINGLE_JAR</type>
+                                <artifacts>
+                                    <artifact>
+                                        <path>target/${project.artifactId}-${project.version}-jar-with-dependencies.jar</path>
+                                    </artifact>
+                                </artifacts>
+                            </jar>
+                        </distributions>
+                    </jreleaser>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/lunatech-labs/lunatech-keycloak-google-groups-mapper</url>
+        </repository>
+    </distributionManagement>
+
+</project>
