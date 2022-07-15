@@ -4,7 +4,7 @@
 
     <groupId>com.lunatech.keycloak</groupId>
     <artifactId>keycloak-google-groups-mapper</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
 
     <name>Keycloak Google Groups Mapper</name>
     <description>An Identity Provider Mapper that fetches Google Groups membership information of a user that uses Google as Identity Provider and syncs it to Keycloak groups.</description>
@@ -30,7 +30,7 @@
     <scm>
         <developerConnection>scm:git:ssh://git@github.com/lunatech-labs/lunatech-keycloak-google-groups-mapper.git</developerConnection>
         
-      <tag>HEAD</tag>
+      <tag>v0.2</tag>
   </scm>
 
     <developers>
