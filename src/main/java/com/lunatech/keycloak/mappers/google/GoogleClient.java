@@ -12,6 +12,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class GoogleClient {
 
@@ -34,7 +35,7 @@ class GoogleClient {
     public List<String> getUsergroupNames(String userKey) {
         try {
             Groups groups = directory.groups().list().setUserKey(userKey).execute();
-            return groups.getGroups().stream().map(Group::getName).toList();
+            return groups.getGroups().stream().map(Group::getName).collect(Collectors.toList());
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
