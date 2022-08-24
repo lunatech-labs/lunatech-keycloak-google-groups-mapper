@@ -28,7 +28,7 @@ We use the `maven-release-plugin` to publish to Github Packages, and then JRelea
 
 Typically, you would run the following:
 
-    mvn release:prepare release:perform
+    mvn release:prepare
     mvn release:perform
     git checkout <<the release version>>
     JRELEASER_GITHUB_TOKEN=<<A GH Token>> mvn jreleaser:release
