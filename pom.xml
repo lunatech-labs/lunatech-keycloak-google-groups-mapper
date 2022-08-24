@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <keycloak.version>18.0.2</keycloak.version>
+        <keycloak.version>19.0.1</keycloak.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <distribution.name>${project.artifactId}</distribution.name>
     </properties>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.google.http-client</groupId>
             <artifactId>google-http-client-jackson2</artifactId>
-            <version>1.42.1</version>
+            <version>1.42.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.auth</groupId>
@@ -79,13 +79,13 @@
         <dependency>
             <groupId>com.github.slugify</groupId>
             <artifactId>slugify</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
+            <version>5.9.0</version>
             <scope>test</scope>
         </dependency>
 
